@@ -24,7 +24,7 @@ echo 'ls -1a' | sftp ${SFTPUSER}@${SFTPHOST}:${SFTPDIR} > /tmp/dbsftp.out
 ### Start MySQL Backup ###
 [ ! -d $BACKUP ] && mkdir -p $BACKUP || :
 
-for conf in $MCONFIG
+for conf in ${MCONFIG[@]}
 do
     MDBS="$($MYSQL --defaults-extra-file=$conf -Bse 'show databases')"
     for db in $MDBS
